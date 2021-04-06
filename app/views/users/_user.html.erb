@@ -2,5 +2,13 @@
   Name: <%= user.name %>
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+    <% if current_user.id == user.id%>
+    <%else%>
+      <% if current_user.friend?(user)%>
+         <%= link_to 'Remove as a friend',  current_user.remove_friend(user), class: 'profile-link' %>
+      <%else%>
+        <%= link_to 'Add as a friend',  current_user.send_friend_request(user), class: 'profile-link' %>
+      <%end%>
+    <%end%>
   </span>
 </li>
