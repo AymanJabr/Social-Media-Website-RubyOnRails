@@ -7,7 +7,7 @@
       <% if current_user.friend?(user)%>
          <%= link_to 'Remove as a friend',  current_user.remove_friend(user), class: 'profile-link' %>
       <%else%>
-        <%= link_to 'Add as a friend',  current_user.send_friend_request(user), class: 'profile-link' %>
+        <%= link_to 'Add as a friend',  send_request_friendship_path %>
       <%end%>
     <%end%>
   </span>

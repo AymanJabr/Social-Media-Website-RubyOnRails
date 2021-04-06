@@ -2,9 +2,16 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
+  resources :friendships, only: [:destroy]
+
   devise_for :users
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resources :friendships, only: [:create, :approve, :pending, :destroy]
+    get '/approve_friendship', to: 'friendship#approve'
+    get '/send_request_friendship', to: 'friendship#pending'
+  end
+
   resources :posts, only: [:index, :create] do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :destroy]
