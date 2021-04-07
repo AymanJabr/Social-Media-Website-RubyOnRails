@@ -19,11 +19,11 @@ class User < ApplicationRecord
     friends_array.compact
   end
 
-  def non_friends
-    friends_array = friendships.map { |friendship| friendship.friend if !friendship.status == 'confirmed' }
-    friends_array + inverse_friendships.map { |friendship| friendship.user if !friendship.status == 'confirmed' }
-    friends_array.compact
-  end
+  # def non_friends
+  #   friends_array = friendships.map { |friendship| friendship.friend if !friendship.status == 'confirmed' }
+  #   friends_array + inverse_friendships.map { |friendship| friendship.user if !friendship.status == 'confirmed' }
+  #   friends_array.compact
+  # end
 
   # Users who have yet to confirme friend requests
   def pending_friends
@@ -68,8 +68,8 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  def pending_friend?(user)
-    pending_friends.include?(user)
-  end
+  # def pending_friend?(user)
+  #   pending_friends.include?(user)
+  # end
 end
 # rubocop:enable Lint/ShadowingOuterLocalVariable
