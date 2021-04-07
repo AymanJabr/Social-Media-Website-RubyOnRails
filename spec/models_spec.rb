@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -42,9 +43,9 @@ RSpec.describe User, type: :model do
     end
     it 'Does not creates a new Like from a user' do
       user = User.new(id: 1, name: 'username', email: 'username@gmail.com', password: 'password')
-      post = user.posts.build(content: 'Some specific content')
       like = user.likes.build
       expect(like.valid?).to eq(false)
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
