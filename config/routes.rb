@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show] do
-    resources :friendships, only: [:create, :approve, :pending, :destroy]
-    get '/approve_friendship', to: 'friendship#approve'
-    get '/send_request_friendship', to: 'friendship#pending'
+    resources :friendships, only: [:create, :approve, :destroy]
+    get '/approve_friendships', to: 'friendships#approve'
   end
 
   resources :posts, only: [:index, :create] do

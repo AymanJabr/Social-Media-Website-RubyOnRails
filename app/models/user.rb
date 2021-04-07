@@ -14,8 +14,8 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends
-    friends_array = friendships.map { |friendship| friendship.friend if friendship.status == 'confirmed' }
-    friends_array + inverse_friendships.map { |friendship| friendship.user if friendship.status == 'confirmed' }
+    friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
+    friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
     friends_array.compact
   end
 
@@ -25,26 +25,26 @@ class User < ApplicationRecord
     friends_array.compact
   end
 
-  # Users who have yet to confirm friend requests
+  # Users who have yet to confirme friend requests
   def pending_friends
-    friendships.map { |friendship| friendship.friend if friendship.status == 'pending' }.compact
+    friendships.map{|friendship| friendship.friend if !friendship.confirmed}.compact
   end
 
   # Users who have requested to be friends
   def friend_requests
-    inverse_friendships.map { |friendship| friendship.user if !friendship.status == 'confirmed' }.compact
+    inverse_friendships.map{|friendship| friendship.user if !friendship.confirmed}.compact
   end
 
   # status can be: 'nul', 'pending', 'to_confirm' , 'rejected' = 'nul','confirmed',
   def confirm_friend(user)
-    friendship = inverse_friendships.find { |friendship| friendship.user == user }
-    friendship.status = 'confirmed'
+    friendship = inverse_friendships.find{|friendship| friendship.user == user}
+    friendship.confirmed = true
     friendship.save
   end
 
   def reject_friend(user)
     friendship = inverse_friendships.find { |friendship| friendship.user == user }
-    friendship.status = 'nul'
+    friendship.confirmed = false
     friendship.save
   end
 
@@ -66,6 +66,10 @@ class User < ApplicationRecord
 
   def friend?(user)
     friends.include?(user)
+  end
+
+  def pending_friend?(user)
+    pending_friends.include?(user)
   end
 end
 # rubocop:enable Lint/ShadowingOuterLocalVariable
