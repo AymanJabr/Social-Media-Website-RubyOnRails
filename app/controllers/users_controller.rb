@@ -13,6 +13,5 @@ class UsersController < ApplicationController
     @friend_req = current_user.friend_requests
   end
 
-  def create
-  end
+  def create; end
 end
