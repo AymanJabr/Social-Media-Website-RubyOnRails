@@ -5,18 +5,18 @@
     <ul class="posts">
       <%= render @posts %>
     <h3>Friend's list</h3>
-    <%= @friends.each { |frd| 
-       frd.name 
-      } %>
-      <h3>Pending friend's list</h3>
-      <%= @friend_req.each { |frd_req|
-       frd_req.name 
-       } %>
+    <% @friends.each { |frd| %>
+       <%= frd.name %>
+    <% } %>
       <h3>Friend's request list</h3>
-      <% @friend_pen.each do |friend_pen|%>
+      <% @friend_req.each do |frd_req|%>
+       <%= frd_req.name %>
+      <% end %>
+      <h3>Pending friend's requests</h3>
+      <% @friend_pen.each do |frd_pen|%>
         <%= frd_pen.name%>
         <%= link_to 'Decline', friendship_path(frd_pen),method: :delete%>
-        <%= link_to 'Approve',  user_approve_friendship_path(frd_pen)%>
+        <%= link_to 'Approve',  user_approve_friendships_path(frd_pen)%>
       <% end %>
        
     </ul>

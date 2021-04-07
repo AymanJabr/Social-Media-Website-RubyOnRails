@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
     @friends = current_user.friends
-    @friend_req = current_user.pending_friends
-    @friend_pen = current_user.friend_requests
+    @friend_pen = current_user.pending_friends
+    @friend_req = current_user.friend_requests
   end
 
   def create
