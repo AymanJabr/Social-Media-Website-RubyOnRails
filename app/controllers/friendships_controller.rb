@@ -26,16 +26,4 @@ class FriendshipsController < ApplicationController
     redirect_to users_path(params[:user_id]), notice: "Friendship with #{@user.name} confirmed" if @friendship.save
   end
 
-  # def pending
-  #     @user = User.find(params[:user_id])
-  #     @friendship = @user.inverse_friendships.find { |friendship| friendship.user == current_user }
-  #     @friendship.status = 'to_confirm'
-  #     # puts "\n\n\n   FRIENDSHIP SIZE: #{@friendship}\n\n\n"
-  #     @friendship = current_user.friendships.find { |friendship| friendship.user == @user }
-  #     # puts "\n\n\n   FRIENDSHIP SIZE: #{@friendship}\n\n\n"
-  #     @friendship.status = 'pending'
-  #     if @friendship.save
-  #         redirect_to users_path(params[:user_id]), notice: "Friendship request sent to #{@user.name}"
-  #     end
-  # end
 end
