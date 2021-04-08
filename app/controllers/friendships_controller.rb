@@ -6,7 +6,8 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friend_id: params[:user_id])
     if @friendship.save
-      redirect_to users_path, notice: 'Succesfully sent friend request'
+      flash[:notice] = "Succesfully sent friend request to #{user.name}"
+      redirect_to users_path
     else
       redirect_to users_path, notice: 'Unable to save friend request, try again at a later time'
     end
@@ -29,5 +30,11 @@ class FriendshipsController < ApplicationController
     Friendship.create!(friend_id: current_user.id, user_id: @user.id, confirmed: true)
 
     redirect_to users_path(params[:user_id]), notice: "Friendship with #{@user.name} confirmed"
+  end
+
+  private
+
+  def user
+    @friend = User.find(params[:user_id])
   end
 end
