@@ -1,4 +1,5 @@
 # rubocop:disable  Bundler/DuplicatedGem
+# rubocop:disable  Layout/TrailingEmptyLines
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -72,3 +73,4 @@ group :development, :test do
 end
 gem 'pg', group: :production
 # rubocop:enable  Bundler/DuplicatedGem
+# rubocop:enable  Layout/TrailingEmptyLines
