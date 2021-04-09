@@ -18,9 +18,15 @@ class PostsController < ApplicationController
   end
 
   private
-
   def timeline_posts
-    @timeline_posts ||= Post.all.ordered_by_most_recent.includes(:user)
+    @timeline_posts = []
+    Post.all.ordered_by_most_recent.each do |post|
+      @timeline_posts << post if post.user_id == current_user.id
+      current_user.friends.each do |i|
+        @timeline_posts << post if post.user_id == i.id
+      end
+    end
+    @timeline_posts
   end
 
   def post_params
