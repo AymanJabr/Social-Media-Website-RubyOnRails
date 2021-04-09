@@ -1,11 +1,15 @@
-# Scaffold for social media app with Ruby on Rails
+# Social media app with Ruby on Rails
 
-> This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
+This project is part of the Microverse Ruby on Rails training curriculum. In this project we created a a self-linking association for the User's table, in order to keep track of which users were friend with each other
+
+![Screenshot1](./app/assets/images/screenshot.JPG)
+![Screenshot2](./app/assets/images/screenshot2.JPG)
+![Screenshot3](./app/assets/images/screenshot3.JPG)
 
 ## Built With
 
 - Ruby v2.7.0
-- Ruby on Rails v5.2.4
+- Ruby on Rails v6.1.0
 
 ## Live Demo
 
@@ -59,8 +63,10 @@ Open `http://localhost:3000/` in your browser.
 
 ### Run tests
 
+run `sudo apt-get install chromium-chromedriver` to install chromium-chromedriver
+
 ```
-    rpsec --format documentation
+    rspec --format documentation
 ```
 
 > Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
@@ -69,25 +75,31 @@ Open `http://localhost:3000/` in your browser.
 
 TBA
 
-## Authors
-
-TBA
+## Authors :bust_in_silhouette:
+### Ayman Jabr
+\_[Github: @AymanJabr](https://github.com/AymanJabr/)
+\_[LinkedIn: @Ayman Jabr](https://www.linkedin.com/in/ayman-jabr/)
+### Frederick Mih
+\_[Github: @FrederickMih](https://github.com/FrederickMih)
+\_[LinkedIn: @Mih Frederick](https://www.linkedin.com/in/frederick-mih/)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/AymanJabr/Social-Media-Website-RubyOnRails/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-TBA
-
 ## 📝 License
 
-TBA
+### Released under MIT License
+
+Copyright (c) 2021 Ayman Jabr.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 

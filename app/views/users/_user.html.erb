@@ -5,9 +5,12 @@
     <% if current_user.id == user.id%>
     <%else%>
       <% if current_user.friend?(user)%>
-         <%= link_to 'Remove as a friend', user_approve_friendships_path(user),method: :delete %>
+         <%= link_to 'Remove as a friend', friendship_path(user),method: :delete %>
       <% elsif current_user.pending_friends.include?(user) %>
         <p> Pending response from <%= user.name%> </p>
+      <% elsif current_user.friend_requests.include?(user) %>
+        <%= link_to 'Decline', friendship_path(user),method: :delete%>
+        <%= link_to 'Approve',  user_approve_friendships_path(user)%>
       <%else%>
         <%= link_to 'Add as a friend',  user_friendships_path(user), method: :post, class: 'profile-link' %>
       <%end%>
