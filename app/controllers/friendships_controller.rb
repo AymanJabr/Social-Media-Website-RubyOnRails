@@ -26,7 +26,7 @@ class FriendshipsController < ApplicationController
 
     return unless @friendship.save
 
-    Friendship.create!(friend_id: current_user.id, user_id: @user.id, confirmed: true)
+    current_user.friendships.create!(friend_id: @user.id, confirmed: true)
 
     redirect_to users_path(params[:user_id]), notice: "Friendship with #{@user.name} confirmed"
   end
