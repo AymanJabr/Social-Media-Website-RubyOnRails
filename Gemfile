@@ -1,3 +1,4 @@
+# rubocop:disable  Bundler/DuplicatedGem
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -64,3 +65,4 @@ group :development, :test do
   gem 'sqlite3'
 end
 gem 'pg', group: :production
+# rubocop:enable  Bundler/DuplicatedGem
