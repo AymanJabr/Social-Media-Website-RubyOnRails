@@ -6,7 +6,6 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friend_id: params[:user_id])
     if @friendship.save
-      flash[:notice] = "Succesfully sent friend request to #{user.name}"
       redirect_to users_path
     else
       redirect_to users_path, notice: 'Unable to save friend request, try again at a later time'
