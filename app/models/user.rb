@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :confirmed_friendships, -> { where confirmed: true }, class_name: 'Friendship'
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship'
   has_many :friends, through: :confirmed_friendships
-  
 
   # def friends
   #   friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }

@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def timeline_posts
     @timeline_posts = []
     Post.all.ordered_by_most_recent.each do |post|
