@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friend_id: params[:user_id])
     if @friendship.save
-      redirect_to users_path, notice: 'Succesfully sent friend request'
+      redirect_to users_path
     else
       redirect_to users_path, notice: 'Unable to save friend request, try again at a later time'
     end
@@ -16,6 +16,9 @@ class FriendshipsController < ApplicationController
     @user = User.find(params[:id])
     @friendship = current_user.inverse_friendships.find { |friendship| friendship.user == @user }
     @friendship.destroy
+    @friendship = @user.inverse_friendships.find { |friendship| friendship.user == current_user }
+    puts "\n\n\n #{@friendship}\n\n\n"
+    @friendship.destroy unless @friendship.blank?
     redirect_to users_path, notice: "Removed #{@user.name} as friend"
   end
 
@@ -23,19 +26,17 @@ class FriendshipsController < ApplicationController
     @user = User.find(params[:user_id])
     @friendship = current_user.inverse_friendships.find { |friendship| friendship.user == @user }
     @friendship.confirmed = true
-    redirect_to users_path(params[:user_id]), notice: "Friendship with #{@user.name} confirmed" if @friendship.save
+
+    return unless @friendship.save
+
+    current_user.friendships.create!(friend_id: @user.id, confirmed: true)
+
+    redirect_to users_path(params[:user_id]), notice: "Friendship with #{@user.name} confirmed"
   end
 
-  # def pending
-  #     @user = User.find(params[:user_id])
-  #     @friendship = @user.inverse_friendships.find { |friendship| friendship.user == current_user }
-  #     @friendship.status = 'to_confirm'
-  #     # puts "\n\n\n   FRIENDSHIP SIZE: #{@friendship}\n\n\n"
-  #     @friendship = current_user.friendships.find { |friendship| friendship.user == @user }
-  #     # puts "\n\n\n   FRIENDSHIP SIZE: #{@friendship}\n\n\n"
-  #     @friendship.status = 'pending'
-  #     if @friendship.save
-  #         redirect_to users_path(params[:user_id]), notice: "Friendship request sent to #{@user.name}"
-  #     end
-  # end
+  private
+
+  def user
+    @friend = User.find(params[:user_id])
+  end
 end

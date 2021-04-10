@@ -14,10 +14,6 @@ RSpec.describe 'Sign in page', type: :system do
       visit users_path
       expect(page).to have_content('Password')
     end
-    it 'shows Log in ' do
-      visit users_path
-      expect(page).to have_content('Log in')
-    end
     it 'shows Sign up ' do
       visit users_path
       expect(page).to have_content('Sign up')
