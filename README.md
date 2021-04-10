@@ -13,7 +13,7 @@ This project is part of the Microverse Ruby on Rails training curriculum. In thi
 
 ## Live Demo
 
-[here](https://dry-wildwood-47175.herokuapp.com/).
+[Link to live demo](https://simplesocialmediabackend.herokuapp.com/).
 
 
 ## Getting Started
