@@ -53,7 +53,9 @@ class User < ApplicationRecord
   end
 
   def friend?(user)
-    friends.include?(user)
+    # https://semaphoreci.com/blog/2017/03/14/faster-rails-how-to-check-if-a-record-exists.html
+    friends.where(user_id: user.id).exists?
+    # friends.include?(user)
   end
 end
 # rubocop:enable Lint/ShadowingOuterLocalVariable
